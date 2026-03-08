@@ -23,4 +23,11 @@ public class LionTest {
         assertEquals(5, lion.getKittens());
     }
 
+    @Test
+    public void getKittensFemaleTest() throws Exception{
+        Lion lion = new Lion("Самка", feline);
+
+        Mockito.when(feline.getKittens()).thenReturn(4);
+        assertEquals(4, lion.getKittens());
+    }
 }
