@@ -15,8 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 public class LionTest {
@@ -69,5 +68,11 @@ public class LionTest {
 
         Mockito.when(feline.getFood("Хищник")).thenReturn(food);
         assertEquals(food, lion.getFood());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "Гермафродит"})
+    public void lionTrowsException(String sex) {
+        assertThrows(Exception.class, () -> new Lion(sex, feline));
     }
 }
