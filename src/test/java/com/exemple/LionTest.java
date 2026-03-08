@@ -22,14 +22,21 @@ public class LionTest {
     @Mock
     Feline feline;
 
-    @Test
-    public void getKittensMaleTest() throws Exception {
-        Lion lion = new Lion("Самец", feline);
+    @ParameterizedTest
+    @MethodSource("kittensData")
+    public void getKittensTest(String sex, int kittens) throws Exception {
+        Lion lion = new Lion(sex, feline);
 
-        Mockito.when(feline.getKittens()).thenReturn(5);
-        assertEquals(5, lion.getKittens());
+        Mockito.when(feline.getKittens()).thenReturn(kittens);
+        assertEquals(kittens, lion.getKittens());
     }
-
+    private static Stream<Arguments> kittensData() {
+        return Stream.of(
+                Arguments.of("Самец", 5),
+                Arguments.of("Самка", 4)
+        );
+    }
+    /*
     @Test
     public void getKittensFemaleTest() throws Exception {
         Lion lion = new Lion("Самка", feline);
@@ -37,7 +44,7 @@ public class LionTest {
         Mockito.when(feline.getKittens()).thenReturn(4);
         assertEquals(4, lion.getKittens());
     }
-    /*
+
     @Test
     public void doesHaveManeMaleTest() throws Exception {
         Lion lion = new Lion("Самец", feline);
