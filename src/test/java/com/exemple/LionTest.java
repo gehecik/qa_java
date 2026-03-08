@@ -7,10 +7,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -57,6 +59,15 @@ public class LionTest {
                 Arguments.of("Самец", true),
                 Arguments.of("Самка", false)
         );
+    }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"Самец", "Самка"})
+    public void getFoodValidSexTest(String sex) throws Exception {
+        List<String> food = List.of("Животные", "Птицы", "Рыба");
+        Lion lion = new Lion(sex, feline);
+
+        Mockito.when(feline.getFood("Хищник")).thenReturn(food);
+        assertEquals(food, lion.getFood());
     }
 }
