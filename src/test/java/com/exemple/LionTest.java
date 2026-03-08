@@ -4,11 +4,17 @@ import com.example.Feline;
 import com.example.Lion;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 public class LionTest {
@@ -16,7 +22,7 @@ public class LionTest {
     Feline feline;
 
     @Test
-    public void getKittensMaleTest() throws Exception{
+    public void getKittensMaleTest() throws Exception {
         Lion lion = new Lion("Самец", feline);
 
         Mockito.when(feline.getKittens()).thenReturn(5);
@@ -24,10 +30,33 @@ public class LionTest {
     }
 
     @Test
-    public void getKittensFemaleTest() throws Exception{
+    public void getKittensFemaleTest() throws Exception {
         Lion lion = new Lion("Самка", feline);
 
         Mockito.when(feline.getKittens()).thenReturn(4);
         assertEquals(4, lion.getKittens());
+    }
+    /*
+    @Test
+    public void doesHaveManeMaleTest() throws Exception {
+        Lion lion = new Lion("Самец", feline);
+
+        assertTrue(lion.doesHaveMane());
+    }
+    */
+    @ParameterizedTest
+    @MethodSource("maneData")
+    public void doesHaveManeTest(String sex, boolean expected) throws Exception {
+        Lion lion = new Lion(sex, feline);
+        boolean actual = lion.doesHaveMane();
+
+        assertEquals(expected, actual);
+    }
+    private static Stream<Arguments> maneData() {
+        return Stream.of(
+                Arguments.of("Самец", true),
+                Arguments.of("Самка", false)
+        );
+
     }
 }
