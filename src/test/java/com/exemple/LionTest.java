@@ -2,7 +2,6 @@ package com.exemple;
 
 import com.example.Feline;
 import com.example.Lion;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -36,22 +35,7 @@ public class LionTest {
                 Arguments.of("Самка", 4)
         );
     }
-    /*
-    @Test
-    public void getKittensFemaleTest() throws Exception {
-        Lion lion = new Lion("Самка", feline);
 
-        Mockito.when(feline.getKittens()).thenReturn(4);
-        assertEquals(4, lion.getKittens());
-    }
-
-    @Test
-    public void doesHaveManeMaleTest() throws Exception {
-        Lion lion = new Lion("Самец", feline);
-
-        assertTrue(lion.doesHaveMane());
-    }
-    */
     @ParameterizedTest
     @MethodSource("maneData")
     public void doesHaveManeTest(String sex, boolean expected) throws Exception {
