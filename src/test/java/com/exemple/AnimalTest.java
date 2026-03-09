@@ -25,7 +25,16 @@ public class AnimalTest {
     public void getFoodExceptionTest(String animalKind) {
         Animal animal = new Animal();
 
-        assertThrows(Exception.class, () -> animal.getFood(animalKind));
+        Exception exception = assertThrows(Exception.class, () -> animal.getFood(animalKind));
+
+        assertEquals("Неизвестный вид животного, используйте значение Травоядное или Хищник", exception.getMessage());
+    }
+
+    @Test
+    public void getFamilyTest() {
+        Animal animal = new Animal();
+
+        assertEquals("Существует несколько семейств: заячьи, беличьи, мышиные, кошачьи, псовые, медвежьи, куньи", animal.getFamily());
     }
 
     @ParameterizedTest
