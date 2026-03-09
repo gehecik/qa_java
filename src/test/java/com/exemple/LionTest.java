@@ -2,6 +2,7 @@ package com.exemple;
 
 import com.example.Feline;
 import com.example.Lion;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -53,12 +54,17 @@ public class LionTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"Самец", "Самка"})
-    public void getFoodValidSexTest(String sex) throws Exception {
+    public void getFoodValidTest(String sex) throws Exception {
         List<String> food = List.of("Животные", "Птицы", "Рыба");
         Lion lion = new Lion(sex, feline);
 
         Mockito.when(feline.getFood("Хищник")).thenReturn(food);
         assertEquals(food, lion.getFood());
+    }
+
+    @Test
+    public void lionTrowsException() {
+        lionTrowsException(null);
     }
 
     @ParameterizedTest
