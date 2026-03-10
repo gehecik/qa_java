@@ -16,4 +16,14 @@ public class FelineTest {
 
         assertEquals(food, feline.eatMeat());
     }
+
+    @Test
+    public void getFamilyTest() {
+        Feline feline = new Feline();
+
+        assertEquals("Кошачьи", feline.getFamily());
+    }
+
+
+
 }
