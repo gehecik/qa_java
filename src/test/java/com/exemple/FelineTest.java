@@ -2,6 +2,8 @@ package com.exemple;
 
 import com.example.Feline;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -31,5 +33,11 @@ public class FelineTest {
         assertEquals(1, feline.getKittens());
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {3, 5, 0, -1}) // значение -1 проходит
+    public void getKittensCountsTest(int kittensCount) {
+        Feline feline = new Feline();
 
+        assertEquals(kittensCount, feline.getKittens(kittensCount));
+    }
 }
