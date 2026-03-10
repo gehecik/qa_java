@@ -1,5 +1,6 @@
 package com.exemple;
 
+import com.example.Cat;
 import com.example.Feline;
 import com.example.Lion;
 import org.junit.jupiter.api.Test;
@@ -50,6 +51,14 @@ public class LionTest {
                 Arguments.of("Самец", true),
                 Arguments.of("Самка", false)
         );
+    }
+
+    @Test
+    public void getFoodCallsFelineGetFoodTest() throws Exception {
+        Lion lion = new Lion("Самец", feline);
+
+        lion.getFood();
+        Mockito.verify(feline).getFood("Хищник");
     }
 
     @ParameterizedTest
