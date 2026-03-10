@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -71,12 +72,8 @@ public class LionTest {
         assertEquals(food, lion.getFood());
     }
 
-    @Test
-    public void lionTrowsException() {
-        lionTrowsException(null);
-    }
-
     @ParameterizedTest
+    @NullSource
     @ValueSource(strings = {"", "Гермафродит"})
     public void lionTrowsException(String sex) {
         assertThrows(Exception.class, () -> new Lion(sex, feline));
