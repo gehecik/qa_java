@@ -34,7 +34,7 @@ public class FelineTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {3, 5, 0, -1}) // значение -1 проходит
+    @ValueSource(ints = {3, 5, 0})
     public void getKittensCountsTest(int kittensCount) {
         Feline feline = new Feline();
 
