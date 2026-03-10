@@ -24,6 +24,12 @@ public class FelineTest {
         assertEquals("Кошачьи", feline.getFamily());
     }
 
+    @Test
+    public void getKittensReturnOneTest() {
+        Feline feline = new Feline();
+
+        assertEquals(1, feline.getKittens());
+    }
 
 
 }
