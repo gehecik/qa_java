@@ -26,6 +26,14 @@ public class CatTest {
     }
 
     @Test
+    public void getFoodCallsEatMeatTest() throws Exception {
+        Cat cat = new Cat(feline);
+
+        cat.getFood();
+        Mockito.verify(feline).eatMeat();
+    }
+
+    @Test
     public void getFoodTest() throws Exception {
         Cat cat = new Cat(feline);
         List<String> food = List.of("Животные", "Птицы", "Рыба");
