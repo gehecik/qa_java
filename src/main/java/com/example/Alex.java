@@ -17,4 +17,7 @@ public class Alex extends Lion {
         return List.of("Марти", "Глория", "Мелман");
     }
 
+    public String getPlaceOfLiving() {
+        return "Нью-Йоркский зоопарк";
+    }
 }
