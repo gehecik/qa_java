@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.List;
+
 public class Alex extends Lion {
 
     public Alex(Feline feline) throws Exception {
@@ -11,5 +13,8 @@ public class Alex extends Lion {
         return 0;
     }
 
+    public List<String> getFriends() {
+        return List.of("Марти", "Глория", "Мелман");
+    }
 
 }
