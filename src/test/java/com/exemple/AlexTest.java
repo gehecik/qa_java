@@ -8,6 +8,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,4 +30,10 @@ public class AlexTest {
         assertEquals("Нью-Йоркский зоопарк", alex.getPlaceOfLiving());
     }
 
+    @Test
+    public void getFriendsTest() throws Exception {
+        List<String> friends = List.of("Марти", "Глория", "Мелман");
+
+        assertEquals(friends, alex.getFriends());
+    }
 }
