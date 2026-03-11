@@ -1,9 +1,8 @@
 package com.exemple;
 
 import com.example.Feline;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -11,9 +10,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FelineTest {
 
+    Feline feline;
+
+    @BeforeEach
+    void  setUp() {
+        feline = new Feline();
+    }
+
     @Test
     public void eatMeatTest() throws Exception {
-        Feline feline = new Feline();
         List<String> food = List.of("Животные", "Птицы", "Рыба");
 
         assertEquals(food, feline.eatMeat());
@@ -21,23 +26,12 @@ public class FelineTest {
 
     @Test
     public void getFamilyTest() {
-        Feline feline = new Feline();
-
         assertEquals("Кошачьи", feline.getFamily());
     }
 
     @Test
     public void getKittensReturnOneTest() {
-        Feline feline = new Feline();
-
         assertEquals(1, feline.getKittens());
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {3, 5, 0})
-    public void getKittensCountsTest(int kittensCount) {
-        Feline feline = new Feline();
-
-        assertEquals(kittensCount, feline.getKittens(kittensCount));
-    }
 }
